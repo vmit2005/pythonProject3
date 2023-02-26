@@ -41,7 +41,7 @@
 #    data=json.load(f)
 #    print(data)
 
-#csv(Соmma Separated  Values )(переменные разделенные запятыми
+# csv(Соmma Separated  Values )(переменные разделенные запятыми
 
 #
 # import csv
@@ -128,49 +128,201 @@ import csv
 #
 #
 # Парсинг
-from bs4 import BeautifulSoup
-import  re
-
-# def get_copywriter(tag):
-#     whois=tag.find("div",class_="whois").text.strip()
-#     if "Copywriter" in whois:
-#         return tag
-#     return None
-
-
-def get_salary(s):
-    pattern=r"\d+"
-    res=re.search(pattern,s).group()
-    # res=re.findall(pattern,s)[0]
-    print(res)
-
-f=open('index.html',encoding='utf-8').read()
-soup=BeautifulSoup(f,"html.parser")
-# copywriter=[]
-# row=soup.find_all('div',class_="row")
-# for i in row:
-#     cw=get_copywriter(i)
-#     if cw:
-#         copywriter.append(cw)
+# from bs4 import BeautifulSoup
+# import  re
 #
-# print (copywriter)
-
-
-# row=soup.find('div',class_="name").text
-# row=soup.find_all('div',class_="name")
-# print(row)
-# for i in row:
-#     print(i.text)
+# # def get_copywriter(tag):
+# #     whois=tag.find("div",class_="whois").text.strip()
+# #     if "Copywriter" in whois:
+# #         return tag
+# #     return None
 #
-# row = soup.find_all('div', class_="row")[1].find("div",class_="links")
+#
+# def get_salary(s):
+#     pattern=r"\d+"
+#     res=re.search(pattern,s).group()
+#     # res=re.findall(pattern,s)[0]
+#     print(res)
+#
+# f=open('index.html',encoding='utf-8').read()
+# soup=BeautifulSoup(f,"html.parser")
+# # copywriter=[]
+# # row=soup.find_all('div',class_="row")
+# # for i in row:
+# #     cw=get_copywriter(i)
+# #     if cw:
+# #         copywriter.append(cw)
+# #
+# # print (copywriter)
+#
+#
+# # row=soup.find('div',class_="name").text
+# # row=soup.find_all('div',class_="name")
 # # print(row)
-# row=soup.find_all("div",{"data-set":"salary"})[2].text
-# print(row)
-# row=soup.find("div",string="Alena").find_parent(class_="row")
-# print(row)
-# row=soup.find("div",id="whois3").find_previous_sibling()
-# print(row)
+# # for i in row:
+# #     print(i.text)
+# #
+# # row = soup.find_all('div', class_="row")[1].find("div",class_="links")
+# # # print(row)
+# # row=soup.find_all("div",{"data-set":"salary"})[2].text
+# # print(row)
+# # row=soup.find("div",string="Alena").find_parent(class_="row")
+# # print(row)
+# # row=soup.find("div",id="whois3").find_previous_sibling()
+# # print(row)
+#
+# salary=soup.find_all("div",{"data-set":"salary"})
+# for i in salary:
+#     get_salary(i.text)
+#
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
 
-salary=soup.find_all("div",{"data-set":"salary"})
-for i in salary:
-    get_salary(i.text)
+# r=requests.get("https://ru.wordpress.org")
+# # print(r.headers)
+# # print(r.headers['Content-Type'])
+# # print(r.content)
+# print(r.text)
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org"
+#     print(get_data(get_html(url)))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find("header",id="masthead").find("p", class_="site-title").text
+#     return p1
+#
+#
+# if __name__ == '__main__':
+#     main()
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     print(get_data(get_html(url)))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section",class_="plugin-section")[3]
+#     plugins=p1.find_all('article')
+#     # return len(plugins)
+#     for plugin in plugins:
+#         name=plugin.find("h3").text
+#         url=plugin.find("h3").find("a").get("href")
+#         rating = plugin.find("span",class_="rating-count").find("a").text
+#
+#         print(name,url,rating)
+#
+#
+# if __name__ == '__main__':
+#     main()
+#
+#
+#
+# from parsers import Parsers
+# import requests
+# from bs4 import BeautifulSoup
+#
+# def main():
+#     pars=Parsers("https://www.ixbt.com/live/index/news/","new.txt")
+#     pars.run()
+#
+#
+# if __name__=='__main__':
+#     main()
+#
+#
+#
+# MVC
+# Model (модель)
+# Viev (вид или представления)
+# Controller(контроллер)
+#
+#
+#
+# Базы данных
+# таблица состоит из столбцов(поля, атрибуты)
+# строки (записи, кортежи)
+# sqlite
+import sqlite3 as sq
+
+# con = sq.connect('profile.db')
+# cur = con.cursor()
+#
+# cur.execute("""""")
+# con.close()
+
+# *.db, *.db3, *.sqlite, *.sqlite3
+
+# with sq.connect('profile.db') as con:
+#     cur=con.cursor()
+#     cur.execute("""CREATE TABLE IF  NOT EXISTS users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT NOT NULL,
+#     summa REAL,
+#     data BLOB
+#     )""")
+
+# with sq.connect('users.db') as con:
+#     cur=con.cursor()
+#     cur.execute(
+#         """
+#         CREATE TABLE IF NOT  EXIST person(
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         name TEXT NOT NULL,
+#         phone BLOB NOT NULL DEFAULT '+79090000000'
+#         age  INTEGER  NOT NULL CHEK(age>15 AND age<70)
+#         email TEXT UNIQUE
+#         ALTER TABLE person rename to person_table
+#         RENAME COLUMN addres TO home_adress
+#         """
+#     )
+
+    # cur.execute("""CREATE TABLE IF  NOT EXISTS person(
+    # id INTEGER PRIMARY KEY AUTOINCREMENT,
+    # name TEXT NOT NULL,
+    # phone BLOB  non nul DEFAULT '+79090000000',
+    # age INTEGER NOT NULL CHECK(age>15 and age<70)
+    # )""")
+    # ADD
+    # COLUMN
+    # addres
+    # TEXT
+    # NOT
+    # NULL
+    # DEFAULT
+    # "street"
+
+with sq.connect('db_3.db') as con:
+        cur=con.cursor()
+        cur.execute("""
+        SELECT * from T1
+        order by FName
+        LIMIT 2, 5
+        """)
+        res=cur.fetchone()
+        print(res)
+        # res2=cur.fetchmany(3)
+        res2=cur.fetchall()
+        print(res2)
+        # for res in cur:
+        #     print (res)
+
+#Разработчики логической БД
+#Разработчики физической БД
