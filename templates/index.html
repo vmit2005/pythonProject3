@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>    {% for u in users %}
+    <{{u.tag}}>{{ u.string }}</{{u.tag}}>
+    {% endfor %}
+</ul>
+</body>
+</html>

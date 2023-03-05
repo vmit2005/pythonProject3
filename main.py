@@ -294,35 +294,330 @@ import sqlite3 as sq
 #         """
 #     )
 
-    # cur.execute("""CREATE TABLE IF  NOT EXISTS person(
-    # id INTEGER PRIMARY KEY AUTOINCREMENT,
-    # name TEXT NOT NULL,
-    # phone BLOB  non nul DEFAULT '+79090000000',
-    # age INTEGER NOT NULL CHECK(age>15 and age<70)
-    # )""")
-    # ADD
-    # COLUMN
-    # addres
-    # TEXT
-    # NOT
-    # NULL
-    # DEFAULT
-    # "street"
+# cur.execute("""CREATE TABLE IF  NOT EXISTS person(
+# id INTEGER PRIMARY KEY AUTOINCREMENT,
+# name TEXT NOT NULL,
+# phone BLOB  non nul DEFAULT '+79090000000',
+# age INTEGER NOT NULL CHECK(age>15 and age<70)
+# )""")
+# ADD
+# COLUMN
+# addres
+# TEXT
+# NOT
+# NULL
+# DEFAULT
+# "street"
 
-with sq.connect('db_3.db') as con:
-        cur=con.cursor()
-        cur.execute("""
-        SELECT * from T1
-        order by FName
-        LIMIT 2, 5
-        """)
-        res=cur.fetchone()
-        print(res)
-        # res2=cur.fetchmany(3)
-        res2=cur.fetchall()
-        print(res2)
-        # for res in cur:
-        #     print (res)
+# with sq.connect('db_3.db') as con:
+#         cur=con.cursor()
+#         cur.execute("""
+#         SELECT * from T1
+#         order by FName
+#         LIMIT 2, 5
+#         """)
+#         res=cur.fetchone()
+#         print(res)
+#         # res2=cur.fetchmany(3)
+#         res2=cur.fetchall()
+#         print(res2)
+#         # for res in cur:
+#     print (res)
 
-#Разработчики логической БД
-#Разработчики физической БД
+# Разработчики логической БД
+# Разработчики физической БД
+import sqlite3 as sq
+# cars=[
+#         ('BMV',54000),
+#         ('Chevrolet',56000),
+#         ('Daewo0',38000),
+#         ('Citroen',29000),
+#         ('Honda',33000)
+#
+#
+# ]
+# with  sq.connect('cars.db') as con:
+#         cur = con.cursor()
+#         cur.execute("""
+#         CREATE TABLE IF NOT EXISTS cars(
+#             car_id  INTEGER PRIMARY KEY AUTOINCREMENT,
+#             model TEXT,
+#             price INTEGER)
+#                """)
+
+
+# for car in cars:
+#     cur.execute("INSERT  INTO cars VALUES(NULL,?,?)",car)
+
+# cur .execute("INSERT  INTO cars VALUES(1,'Renault',20000)")
+# cur .execute("INSERT  INTO cars VALUES(2,'Volvo',29000)")
+# cur .execute("INSERT  INTO cars VALUES(3,'Mersedes',57000)")
+# cur .execute("INSERT  INTO cars VALUES(4,'Bentley',35000)")
+# cur .execute("INSERT  INTO cars VALUES(5,'Audi',52000)")
+#
+# cur.executescript("""
+# DELETE FROM cars WHERE model LIKE 'B%';
+# UPDATE cars SET price = Price+100;
+# """)
+
+#         cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {'Price':0})
+# cur.executemany("INSERT INTO cars VALUES(NULL,?,?)", cars)
+#
+#
+#
+
+
+# con = None
+# try:
+#     con = sq.connect('cars.db')
+#     cur = con.cursor()
+#     cur.executescript("""
+#         CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY key AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#         );
+#         BEGIN;
+#         INSERT INTO cars VALUES (NULL, 'Renault',20000);
+#         UPDATE cars SET price=price+100;
+#
+#         """)
+#     con.commit()
+# except sq.Error as e:
+#     if con:
+#         con.rollback()
+#     print(f"Ошибка выполнения запроса {e}")
+# finally:
+#     if con:
+#         con.close()
+
+# with sq.connect('cars.db') as con:
+#     con.row_factory=sq.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#        car_id INTEGER PRIMARY key AUTOINCREMENT,
+#        model TEXT,
+#        price INTEGER
+#     )
+#     """)
+#     cur.execute('SELECT model, price FROM cars')
+#
+#     for res in cur:
+#         print (res['model'],res['price'])
+
+
+# def read_ava(n):
+#     try:
+#         with open(f"avatars/{n}.png",'rb') as f:
+#             return f.read()
+#     except IOEror as e:
+#         print(e)
+#         return False
+#
+# with sq.connect('cars.db') as con:
+#     con.row_factory=sq.Row
+#     cur = con.cursor()
+#
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#        user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#        ava BLOB
+#
+#     """)
+#     img=read_ava(1)
+#     if img:
+#         minary=sq.Binary(img)
+#         cur.execute("INSERT INTO users VALUES(?,?)",(1,binary))
+
+# with sq.connect('cars.db') as con:
+#
+#     cur = con.cursor()
+#     # with open('sql_dump.sql','w') as f:
+#     #     for sql in con.iterdump():
+#     #         f.write(sql)
+#
+#     with open('sql_dump.sql','r') as f:
+#         sql = f.read()
+#         cur.executescript(sql)
+
+##
+##
+# Шаблонизатор (Jinja)
+from jinja2 import Template
+#
+#
+# name="Игорь"
+# age=28
+# per = {'name': "Игорь", 'age': 28}
+# class Person:
+#     def __init__(self, name, age):
+#         self.__name = name
+#         self.__age = age
+#
+#     def get_name(self):
+#         return self.__name
+#
+#     def get_age(self):
+#         return self.__age
+#
+#
+# per = Person("Игорь", 26)
+# #
+# # # tm=Template("Mне {{a*2}} лет. Меня зовут {{name.upper()}}.")
+# # # tm = Template("Mне {{p.age}} лет. Меня зовут {{p['name'].upper() }}.")
+# # # tm = Template("Mне {{p.age}} лет. Меня зовут {{p['name'].upper() }}.")
+# tm = Template("Mне {{p.get_age()}} лет. Меня зовут {{p.get_name() }}.")
+# msg = tm.render(p=per)
+# print(msg)
+# # {{ }}-выражение для вставки констукции Pyton в if,kjy
+# # {% %}-Спецификатор шаблона
+# #
+# # {%for <dshf;tybt>%}
+# #     <тело цикла>
+# # {%endfor%}
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Cмоленск'},
+#     {'id': 3, 'city': 'Минск'},
+#     {'id': 4, 'city': 'Ярославль'},
+#     {'id': 5, 'city': 'Уфа'}
+# ]
+# link = """<select name="cities">
+# {% for c in cities -%}
+# {% if c.id>3 %}
+# <option value="{{c['id']}}" > {{c.city}}</option>
+# {% elif c.city == 'Москва' -%}
+#     <option  > {{c.city}}</option>
+# {% else %}
+#     {{c.city}}
+# {% endif %}
+# {% endfor %}
+# </select>"""
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+# print(msg)
+#
+#
+# cities = [
+#     {'id':'/index','title': 'Главная'},
+#     {'id':'/news','title':'Новости'},
+#     {'id':'/about','title': 'О коммпании'},
+#     {'id':'/shop','title': 'Магазин'},
+#     {'id':'/contact','title': 'Контакты'},
+# ]
+# link = """<ul>
+# {% for c in cities -%}
+# {% if c.title=='Главная' -%}
+# <li><a href="{{ c.id }}" class="active">{{c.title}}</a></li>
+# {% else -%}
+# <li><a href="{{ c.id }}">{{c.title}}</a></li>
+# {% endif -%}
+# {% endfor -%}
+# </ul>
+# """
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+# print(msg)
+
+# ОТ МАРИИ menu = [    {'id': 'index', 'title': 'Главная'},    {'id': 'news', 'title': 'Новости'},    {'id': 'about', 'title': 'О компании'},    {'id': 'shop', 'title': 'Магазин'},    {'id': 'contacts', 'title': 'Контакты'},]link = """<ul>{%for i in menu -%}{%if i.title=='Главная'-%}<li><a href="/{{i.id}}" class="active">{{i.title}}</li>{%else-%}<li><a href="/{{i.id}}">{{i.title}}</li>{%endif-%}{%endfor-%}</ul>"""tm = Template(link)msg = tm.render(menu=menu)print(msg)
+
+# cars = [    {'model': 'Audi', 'price': 23000},
+#             {'model': 'Skoda', 'price': 17300},
+#             {'model': 'Renault', 'price': 44300},
+#             {'model': 'Wolksvagen', 'pri<li><a href="{{ c.id }}">{{c.title}}</a></li>ce': 21300}]
+# lst=[1,2,3,4,5]
+# print(sum(map(lambda x: x['price'], cars)))
+# tp1 = "Суммарная цена автомобилей {{ cs|sum(attribute='price') }}"
+# tp1 = "Суммарная цена автомобилей {{ (cs|max(attribute='price')).model }}"
+# tp1 = "Суммарная цена автомобилей {{ (cs|random) }}"
+# tp1 = "Суммарная цена автомобилей {{ (cs|replace('model','brand')) }}"
+#
+#
+# tm = Template(tp1)
+# msg = tm.render(cs=cars)
+# print(msg)
+# tp2= "Суммарная цена автомобилей {{ ls | sum }}"
+#
+# tm2 = Template(tp2)
+# msg2= tm2.render(ls=lst)
+# print(msg2)
+# sum1=0
+# # map(sum,cars[''])
+# for i in cars:
+#     sum1 += i['price']
+# print(sum1)
+#
+# print(sum(map(lambda x: x['price'], cars)))
+#
+# Макроопределения
+# html="""
+# {% macro input(name,value='', type='text', size=20) %}
+#     <input type='{{type}}' name='{{name}}' value='{{value}}' size='{{size}}
+# {% endmacro %}
+# <p>{{input ('username','Ann')}}</p>
+# <p>{{input ('email')}}</p>
+# <p>{{input ('password',type='password')}}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+#
+# html="""
+# {% macro input(name,placeholder='', type='text') -%}
+#     <input type='{{type}}' name='{{name}}' placeholder='{{ placeholder }}' >
+# {% endmacro %}
+# <p>{{input ('firstname','Имя')}}</p>
+# <p>{{input ('lastname','Имя')}}</p>
+# <p>{{input ('address','Имя')}}</p>
+# <p>{{input ('phone',type='tel',placeholder='Телефон') }}</p>
+# <p>{{input ('email','Почта','email') }}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+#
+#
+#
+# persons = [    {"name": "Алексей", "year": 18, "weight": 78.5},
+#                {"name": "Никита", "year": 28, "weight": 82.3},
+#                {"name": "Виталий", "year": 33, "weight": 94.0}]
+#
+# html='''
+# {% macro list_users(list_of_users) %}
+# <ul>
+# {% for u in list_of_users  %}
+#     <li>{{u.name}}{{ caller(u)}}</li>
+# {%endfor%}
+# </ul>
+# {% endmacro %}
+#
+# {% call(user) list_users(users) %}
+# <ul>
+#     <li> {{ user.year }}</li>
+#     <li> {{ user.weight }}</li>
+# </ul>
+# {% endcall %}
+# '''
+#
+#
+# tm = Template(html)
+# msg = tm.render(users=persons)
+# print(msg)
+from jinja2 import Environment, FileSystemLoader
+persons = [    {"name": "Алексей", "year": 18, "weight": 78.5},
+               {"name": "Никита", "year": 28, "weight": 82.3},
+               {"name": "Виталий", "year": 33, "weight": 94.0}]
+
+
+
+file_loader=FileSystemLoader('templates')
+env=Environment(loader=file_loader)
+tm=env.get_template('main.html')
+msg=tm.render(users=persons,title="About Jinja")
+print(msg)

@@ -1,0 +1,6 @@
+{% include 'header.html' %}
+{% for u in strn -%}
+    <{{u.tag}}>{{ u.string }}</{{u.tag}}>
+{% endfor -%}
+
+{% include 'footer.html' %}
