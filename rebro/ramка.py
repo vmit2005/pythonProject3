@@ -20,14 +20,15 @@ def add_ramka(b,*title):
         def wrap(*args,**kwargs):
             Ramка(b,*title)
             output=func(*args,**kwargs)
-            print("_" *50)
+            print(chr(9552) * b)
             return output
+
         return wrap
     return wrapper
 
 
 if __name__ == '__main__':
-    Ramка(55, "Модуль", "отрисовки", "рамки", "="*53,
+    Ramка(55, "Модуль", "отрисовки", "рамки", chr(9552)*53,
           'Функция Ramка(b:int,"string_1"..."string_n")','Декоратор @add_ramka(b:int,"string_1"..."string_n")')
 
 

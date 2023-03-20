@@ -1,15 +1,21 @@
 from ramка import Ramка, add_ramka
 from model import Rebro_Model
+
+
 class UserInterface:
 
     # @add_ramka(50,'Выберите действие')
     def user_answer(self):
         print("0 - Предисловие"
-              "\n1 - Найти сущестующую деталь"
+              "\n1 - Найти сущестующую деталь."
+              "\n    На экран будут выведены детали с размерами близкими к заданной"
               "\n2 - Создать новую деталь"
+              "\n3 - Вывести на экран все записи"
+              "\n4 - Удалить деталь"
               "\nq - Выйти")
-        answer=input("Выберите действие")
+        answer = input("Выберите действие")
         return answer
+
     @add_ramka(50, "Предисловие")
     def coment(self):
         print("""
@@ -27,18 +33,18 @@ class UserInterface:
         что это именно та деталь.
         """)
 
-    @add_ramka(50,'Найти существующие детали')
+    @add_ramka(50, 'Найти существующие детали')
     def find_rebro(self):
-        Ramка(40," "," ","Здесь должна быть ","пояснительная картинка"," "," ")
-        a,b=tuple(input("Вверите размеры А и Б \n в  одну строку через запятую").split(","))
-        (a,b)=sorted((a,b))
+        Ramка(40, " ", " ", "Здесь должна быть ", "пояснительная картинка", " ", " ")
+        a, b = tuple(input("Вверите размеры А и Б \n в  одну строку через запятую").split(","))
+        # (a, b) = sorted((a, b))
         print(a,b)
-        print(
+        return (a,b)
 
-    # @add_ramka(60, "Введите размеры и рараметры новой детали")
+    @add_ramka(60, "Введите размеры и параметры новой детали")
     def view_add_rebro(self):
         dict_rebro = {
-            "Обозначение чертежа":None,
+            "Обозначение чертежа": None,
             "A": None,
             "B": None,
             "C": None,
@@ -46,13 +52,19 @@ class UserInterface:
             "марка": None,
             "не указанные параметры": None
         }
-        dict_rebro["Обозначение чертежа"]=input("Введите обозначение чертежа")
+        dict_rebro["Обозначение чертежа"] = input("Введите обозначение чертежа")
         dict_rebro["A"], dict_rebro["B"], dict_rebro["C"] = tuple(
             input("Вверите размеры А,Б,C \n в  одну строку через запятую").split(","))
         dict_rebro["S"] = input("Толщина листа ")
-        dict_rebro["марка"] = input("Марка стали Ст3, Сталь 20, О9Г2С")
+        dict_rebro["марка"] = input("Марка стали (Ст3, Сталь 20, О9Г2С)")
         dict_rebro["не указанные параметры"] = input("Имеются неуказанные параметры Y/N")
         return dict_rebro
+
+    @add_ramka(50, "Удаление ребра")
+    def viev_del_rebro_insert(self):
+        num = input("Обозначение чертежа")
+        return num
+
 # a=UserInterface()
 # b=a.view_add_rebro()
 # print(b)
